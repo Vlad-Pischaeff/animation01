@@ -57,9 +57,11 @@
 	<canvas id="Canvas_bg" width="400" height="200" bind:this={canvas_bg}></canvas>
 	
 	<div class="control">
-		<div class="control_wrap" on:click={tubeTurnUp}><div class="control_arrow up"></div></div>
-		<div class="control_wrap" on:click={tubeTurnDown}><div class="control_arrow down"></div></div>
-		<div class="control_wrap"><div class="control_arrow right"></div></div>
+		<div class="control_group">
+			<div class="control_wrap" on:click={tubeTurnUp}><div class="arrow-up"></div></div>
+			<div class="control_wrap" on:click={tubeTurnDown}><div class="arrow-down"></div></div>
+		</div>
+		<div class="control_wrap"><div class="arrow-right"></div></div>
 	</div>
 </div>
 
@@ -76,16 +78,15 @@
 	.control {
 		position: absolute;
 		bottom: 0;
-		height: 3rem;
 		width: 400px;
-		background: burlywood;
+		background: bisque;
 		display: flex;
 		justify-content: flex-start;
 		align-items: center;
 		padding: .5rem;
 	}
 	.control_wrap {
-		padding-right: 1rem;
+		padding: .2rem;
 	}
 	.control_wrap:hover {
 		cursor: pointer;
@@ -107,5 +108,36 @@
 	}
 	.right {
 		transform: rotate(-45deg);
+	}
+	.arrow-up {
+		width: 0; 
+		height: 0; 
+		border-left: .81rem solid transparent;
+		border-right: .81rem solid transparent;
+		border-bottom: .81rem solid black;
+	}
+
+	.arrow-down {
+		width: 0; 
+		height: 0; 
+		border-left: .81rem solid transparent;
+		border-right: .81rem solid transparent;
+		border-top: .81rem solid black;
+	}
+
+	.arrow-right {
+		width: 0; 
+		height: 0; 
+		border-top: 1rem solid transparent;
+		border-bottom: 1rem solid transparent;
+		border-left: 1rem solid red;
+	}
+
+	.arrow-left {
+		width: 0; 
+		height: 0; 
+		border-top: 1rem solid transparent;
+		border-bottom: 1rem solid transparent; 
+		border-right: 1rem solid blue; 
 	}
 </style>

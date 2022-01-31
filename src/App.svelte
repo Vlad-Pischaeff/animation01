@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	let canvas_ball, canvas_tube, canvas_foot, canvas_help; 
 	let ctx_ball, ctx_tube, ctx_foot, ctx_help;
-	let radian, angle = 0, repeat = 0;
+	let radian, angle = 0, repeat = 0, fire = false;
 	let spin_axis = {	x : 16,	y : 240 + 30/2	};
 	let ball = { x : 0,	y : 0,
 		velocity : { x: 0, y: 0, },
@@ -44,18 +44,20 @@
 	
 	const ballFire = async () => {
 		resetBall();
+    fire = true;
 		do {
 			ball.velocity.x += Math.abs(2 * Math.cos(radian));
 			ball.velocity.y += (2 * Math.sin(radian)) + 0.013 * repeat;
 			await sleep(20);
 			repeat++;
-		} while (ball.y < 268);
+		} while (ball.y < 268 && fire);
 	}
 
 	const resetBall = () => {
 		ball.velocity.x = 0;
 		ball.velocity.y = 0;
 		repeat = 0;
+    fire = false;
 	}
 
 	const sleep = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
@@ -103,11 +105,13 @@
 				ctx_ball.arc(ball.x, ball.y, 9, 0, Math.PI*2, true);
 				ctx_ball.stroke();
         //...рисуем параболу
-        ctx_foot.beginPath();
-        ctx_foot.strokeStyle = "rgba(0, 55, 155, 0.2)";
-				ctx_foot.lineWidth = 1;
-				ctx_foot.arc(ball.x, ball.y, 1, 0, Math.PI*2, true);
-				ctx_foot.stroke();
+        if (fire) {
+          ctx_foot.beginPath();
+          ctx_foot.strokeStyle = "rgba(0, 55, 155, 0.2)";
+          ctx_foot.lineWidth = 1;
+          ctx_foot.arc(ball.x, ball.y, 1, 0, Math.PI*2, true);
+          ctx_foot.stroke();
+        }
 			}
 		}
 

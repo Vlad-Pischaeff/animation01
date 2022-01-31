@@ -47,7 +47,6 @@
 			ball.velocity.y += (2 * Math.sin(radian)) + 0.013 * repeat;
 			await sleep(20);
 			repeat++;
-			console.log(repeat, ball.velocity.x, ball.velocity.y)
 		} while (ball.y < 268);
 	}
 

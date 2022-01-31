@@ -15,6 +15,8 @@
 		ctx_foot.drawImage(footer, 3, 251, 40, 30);
 		//...рисуем поверхность
 		ctx_foot.beginPath();
+    ctx_foot.strokeStyle = 'gray';
+    ctx_foot.lineWidth = 3;
 		ctx_foot.moveTo(3, 280);
 		ctx_foot.lineTo(397, 280);
 		ctx_foot.stroke();
@@ -100,6 +102,12 @@
 				ctx_ball.lineWidth = 3;
 				ctx_ball.arc(ball.x, ball.y, 9, 0, Math.PI*2, true);
 				ctx_ball.stroke();
+        //...рисуем параболу
+        ctx_foot.beginPath();
+        ctx_foot.strokeStyle = "rgba(0, 55, 155, 0.2)";
+				ctx_foot.lineWidth = 1;
+				ctx_foot.arc(ball.x, ball.y, 1, 0, Math.PI*2, true);
+				ctx_foot.stroke();
 			}
 		}
 

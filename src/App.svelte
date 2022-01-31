@@ -66,7 +66,7 @@
 				ctx_foot.clearRect(0, 0, 90, 60);
 				ctx_foot.fillStyle = "rgba(55, 55, 55, 0.5)";
 				ctx_foot.font = "30px Arial";
-				ctx_foot.fillText(`${angle} \u00B0`, 10, 40);
+				ctx_foot.fillText(`${angle}\u00B0`, 10, 40);
 			}
 		}
 

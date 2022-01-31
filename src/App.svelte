@@ -29,13 +29,9 @@
 	tube.onload = function() { eTube = new Element(ctx_tube, tube, 10, 140, 40, 30) };
 	tube.src = "data:image/png;base64,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";
 
-	const tubeTurnUp = () => {
-		eTube.rotate(-5);
-	}
+	const tubeTurnUp = () => { eTube.rotate(-5); }
 
-	const tubeTurnDown = () => {
-		eTube.rotate(5);
-	}
+	const tubeTurnDown = () => { eTube.rotate(5); }
 
 	$: if (eTube && eFooter) {
 		eTube.draw();
@@ -58,10 +54,16 @@
 	
 	<div class="control">
 		<div class="control_group">
-			<div class="control_wrap" on:click={tubeTurnUp}><div class="arrow-up"></div></div>
-			<div class="control_wrap" on:click={tubeTurnDown}><div class="arrow-down"></div></div>
+			<div  class="control_wrap" on:click={tubeTurnUp}>
+        <div class="arrow up"></div>
+      </div>
+			<div  class="control_wrap" on:click={tubeTurnDown}>
+        <div class="arrow down"></div>
+      </div>
 		</div>
-		<div class="control_wrap"><div class="arrow-right"></div></div>
+		<div class="control_wrap">
+      <div class="arrow right"></div>
+    </div>
 	</div>
 </div>
 
@@ -91,53 +93,32 @@
 	.control_wrap:hover {
 		cursor: pointer;
 	}
-	.control_wrap:hover .control_arrow {
-		border-color: darkred;
-	}
-	.control_arrow {
-		border: solid black;
-		border-width: 0 3px 3px 0;
-		display: inline-block;
-		padding: .5rem;
-	}
+  .arrow {
+		width: 0; 
+		height: 0; 
+  }
 	.up {
-		transform: rotate(-135deg);
+		border-left: .8rem solid transparent;
+		border-right: .8rem solid transparent;
+		border-bottom: .8rem solid black;
 	}
+  .up:hover {
+    border-bottom: .8rem solid red;
+  }
 	.down {
-		transform: rotate(45deg);
+		border-left: .8rem solid transparent;
+		border-right: .8rem solid transparent;
+		border-top: .8rem solid black;
 	}
+  .down:hover {
+    border-top: .81rem solid red;
+  }
 	.right {
-		transform: rotate(-45deg);
-	}
-	.arrow-up {
-		width: 0; 
-		height: 0; 
-		border-left: .81rem solid transparent;
-		border-right: .81rem solid transparent;
-		border-bottom: .81rem solid black;
-	}
-
-	.arrow-down {
-		width: 0; 
-		height: 0; 
-		border-left: .81rem solid transparent;
-		border-right: .81rem solid transparent;
-		border-top: .81rem solid black;
-	}
-
-	.arrow-right {
-		width: 0; 
-		height: 0; 
 		border-top: 1rem solid transparent;
 		border-bottom: 1rem solid transparent;
-		border-left: 1rem solid red;
+		border-left: 1rem solid black;
 	}
-
-	.arrow-left {
-		width: 0; 
-		height: 0; 
-		border-top: 1rem solid transparent;
-		border-bottom: 1rem solid transparent; 
-		border-right: 1rem solid blue; 
-	}
+  .right:hover {
+    border-left: 1rem solid red;
+  }
 </style>

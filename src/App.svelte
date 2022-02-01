@@ -7,7 +7,8 @@
 	let ball = { x : 0,	y : 0,
 		velocity : { x: 0, y: 0, },
 		start: { x: 0, y: 0, }
-	}
+	};
+	let vector = { x: 0, y: 0, };
 
 	var footer = new Image();
 	footer.onload = function() { 
@@ -46,9 +47,11 @@
 		resetBall();
     fire = true;
 		do {
-			ball.velocity.x += Math.abs(2 * Math.cos(radian));
-			ball.velocity.y += (2 * Math.sin(radian)) + 0.013 * repeat;
-			await sleep(20);
+			vector.x = Math.abs(2 * Math.cos(radian));
+			vector.y = (2 * Math.sin(radian)) + 0.013 * repeat;
+			ball.velocity.x += vector.x;
+			ball.velocity.y += vector.y;
+			await sleep(30);
 			repeat++;
 		} while (ball.y < 268 && fire);
 	}
@@ -58,6 +61,21 @@
 		ball.velocity.y = 0;
 		repeat = 0;
     fire = false;
+	}
+
+	const setInitialState = () => {
+		resetBall();
+		//...очищаем параболы
+		ctx_foot?.clearRect(20, 140, 35, 110);
+		ctx_foot?.clearRect(45, 80, 135, 195);
+		ctx_foot?.clearRect(180, 110, 50, 165);
+		ctx_foot?.clearRect(230, 130, 50, 145);
+		ctx_foot?.clearRect(280, 160, 100, 115);
+		//...очищаем вектора скоростей
+		ctx_foot?.clearRect(290, 0, 110, 150);
+		//...сбрасываем вектора скоростей
+		vector.x = 0;
+		vector.y = 0;
 	}
 
 	const sleep = milliseconds => new Promise(resolve => setTimeout(resolve, milliseconds));
@@ -115,7 +133,31 @@
 			}
 		}
 
-	$: 
+	$: if (ctx_foot) {
+			ctx_foot.beginPath();
+			ctx_foot.lineWidth = 3;
+			ctx_foot.clearRect(290, 0, 110, 150);
+			//...рисуем общий вектор скорости V
+			ctx_foot.moveTo(330, 60);
+			ctx_foot.strokeStyle = "rgba(200, 55, 0, 0.5)";
+			ctx_foot.lineTo(330 + vector.x * 25, 60 + vector.y * 25);
+			ctx_foot.stroke();
+			//...рисуем подпись к общему вектору V
+			if (vector.x && vector.y) {
+				ctx_foot.font = "20px Arial";
+				ctx_foot.fillText('V', 335 + vector.x * 25, 65 + vector.y * 25);
+			}
+			//...рисуем вектор по оси X
+			ctx_foot.moveTo(330, 60);
+			ctx_foot.strokeStyle = "rgba(20, 55, 200, 0.5)";
+			ctx_foot.lineTo(330 + vector.x * 25, 60);
+			ctx_foot.stroke();
+			//...рисуем вектор по оси Y
+			ctx_foot.moveTo(330, 60);
+			ctx_foot.strokeStyle = "rgba(120, 255, 50, 0.5)";
+			ctx_foot.lineTo(330, 60 + vector.y * 25);
+			ctx_foot.stroke();
+		}
 
 	onMount(() => {
 		ctx_foot = canvas_foot.getContext('2d');
@@ -136,7 +178,7 @@
 	<canvas id="Canvas_foot" width="400" height="300" bind:this={canvas_foot}></canvas>
 	
 	<div class="control">
-		<div class="control_wrap" on:click={resetBall}>
+		<div class="control_wrap" on:click={setInitialState}>
       <div class="arrow left"></div>
     </div>
 		<div class="control_group">
